@@ -15,7 +15,7 @@ export default function CreatePostForm() {
                 borderTop: '1px solid rgba(123, 124, 129, 0.2)',
                 padding: '7px 15px'
             }}>
-                <GenericButton>Post</GenericButton>
+                <GenericButton type="submit">Post</GenericButton>
             </Box>
         </BorderBox>
     )

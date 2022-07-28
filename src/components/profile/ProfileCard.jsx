@@ -7,8 +7,12 @@ export default function ProfileCard() {
     return (
         <BorderBox sx={{
             minWidth: 220,
+            '@media (max-width: 1000px)': {
+               width: '100%'
+            },
             height: 130,
-            marginRight: 20
+            marginRight: 20,
+            marginBottom: 20,
         }}>
             <ProfileInfo />
             <ProfileStats />
