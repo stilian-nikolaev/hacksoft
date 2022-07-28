@@ -1,14 +1,21 @@
-import { Box } from '@mantine/core'
+import { Box, Center, UnstyledButton } from '@mantine/core'
 import React from 'react'
 import BorderBox from '../common/BorderBox'
 import CreatePostForm from '../create-post/CreatePostForm'
+import LoadMoreButton from './LoadMoreButton'
 import Post from './Post'
 
 export default function Feed() {
     return (
-        <Box sx={{ width: '100%' }}>
+        <Box sx={{  }}>
             <CreatePostForm />
             <Post />
-        </Box>
+            <Post />
+            <Post />
+            <Post />
+            <Post />
+            <Post />
+            <LoadMoreButton />
+        </Box >
     )
 }

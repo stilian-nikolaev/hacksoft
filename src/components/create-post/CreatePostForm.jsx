@@ -1,7 +1,7 @@
 import { Box, Text, Textarea } from '@mantine/core'
 import React from 'react'
 import BorderBox from '../common/BorderBox'
-import SubmitButton from '../common/SubmitButton'
+import GenericButton from '../common/GenericButton'
 import TextField from '../common/TextField'
 
 export default function CreatePostForm() {
@@ -15,7 +15,7 @@ export default function CreatePostForm() {
                 borderTop: '1px solid rgba(123, 124, 129, 0.2)',
                 padding: '7px 15px'
             }}>
-                <SubmitButton>Post</SubmitButton>
+                <GenericButton>Post</GenericButton>
             </Box>
         </BorderBox>
     )

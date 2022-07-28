@@ -1,11 +1,10 @@
 import { UnstyledButton } from '@mantine/core'
 import React from 'react'
 
-export default function SubmitButton({ sx, children, onClick }) {
+export default function GenericButton({ sx, children, onClick, ...props}) {
     return (
         <UnstyledButton
-            onClick={onClick}
-            type="submit"
+            {...props}
             sx={{
                 display: 'flex',
                 alignItems: 'center',
