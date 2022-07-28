@@ -14,7 +14,8 @@ export default function Header() {
           paddingLeft: 50,
           paddingRight: 50,
           boxShadow: '0px 4px 5px rgba(123, 124, 129, 0.05)',
-          backgroundColor: 'white'
+          backgroundColor: 'white',
+          zIndex: 999,
       }}>
           <Image
               src="/logo.svg"
