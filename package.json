@@ -11,9 +11,11 @@
     "@mantine/core": "^5.0.0",
     "axios": "^0.27.2",
     "formik": "^2.2.9",
+    "mobx": "^6.6.1",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
-    "react-query": "^4.0.0"
+    "react-query": "^4.0.0",
+    "yup": "^0.32.11"
   },
   "devDependencies": {
     "@types/react": "^18.0.0",

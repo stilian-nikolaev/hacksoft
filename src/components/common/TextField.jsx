@@ -1,24 +1,20 @@
-import { Textarea } from '@mantine/core'
 import React from 'react'
+import { useField } from 'formik'
+import { Box, TextInput } from '@mantine/core';
 
-export default function TextField() {
+
+export default function TextField({ name,  ...props }) {
+    const [field, meta] = useField(name);
+    // const message = meta.touched && meta.error ? `${props.placeholder} ${meta.error.split(' ').splice(1).join(' ')}` : '';
+
     return (
-        <Textarea
-            variant="unstyled"
-            placeholder="Share something to the community..."
-            aria-label="Post Content"
-            autosize
-            size={16}
-            maxRows={10}
-            sx={{
-                fontSize: 16,
-                padding: '20px 28px 20px 28px',
-                '& ::placeholder': {
-                    fontSize: 16,
-                    color: '#212529 !important'
-                }
-            }}
-        />
-
+        <Box>
+            <TextInput
+                {...field}
+                {...props}
+                error={meta.error && meta.touched}
+                // description={message} 
+                />
+        </Box>
     )
 }

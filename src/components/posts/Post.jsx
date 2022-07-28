@@ -5,13 +5,13 @@ import PostContent from './PostContent'
 import PostHeader from './PostHeader'
 import PostLikes from './PostLikes'
 
-export default function Post() {
+export default function Post({creator, occupation, postedAt, content, likes}) {
     return (
         <BorderBox sx={{ marginTop: 19,}}>
             <Box sx={{ borderBottom: '1px solid rgba(123, 124, 129, 0.2)', padding: '15px 15px 10px 15px' }}>
-                <PostHeader />
-                <PostContent />
-                <PostLikes />
+                <PostHeader name={creator} occupation={occupation} createdAt={postedAt} />
+                <PostContent content={content}/>
+                <PostLikes likes={likes}/>
             </Box>
             <Box sx={{ display: 'flex', justifyContent: 'space-between', padding: '10px 17px' }}>
                 <Box sx={{display:'flex', alignItems: 'center'}}>

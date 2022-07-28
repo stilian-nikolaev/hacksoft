@@ -2,12 +2,12 @@ import { Box, Text, Textarea } from '@mantine/core'
 import React from 'react'
 import BorderBox from '../common/BorderBox'
 import GenericButton from '../common/GenericButton'
-import TextField from '../common/TextField'
+import TextAreaField from '../common/TextAreaField'
 
 export default function CreatePostForm() {
     return (
         <BorderBox>
-            <TextField />
+            <TextAreaField />
             <Box sx={{
                 display: 'flex',
                 height: 45,

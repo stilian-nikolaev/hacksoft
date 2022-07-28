@@ -1,7 +1,7 @@
 import { Box, Text } from '@mantine/core'
 import React from 'react'
 
-export default function PostContent() {
+export default function PostContent({ content }) {
   return (
     <Box sx={{ marginTop: 10 }}>
       <Text sx={{
@@ -11,7 +11,7 @@ export default function PostContent() {
           fontSize: 14,
         },
       }}>
-        Despite our total project numbers only increasing by 2% compared to last month, the 58 projects we are working on contain a significant increase in deliverables.
+        {content}
       </Text>
     </Box>
   )
