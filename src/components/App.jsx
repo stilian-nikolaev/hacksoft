@@ -1,10 +1,12 @@
-import { MantineProvider, Text } from '@mantine/core';
+import { MantineProvider } from '@mantine/core';
 import Home from './Home';
+import GlobalStyles from './GlobalStyles';
 
 function App() {
 
   return (
-    <MantineProvider withGlobalStyles withNormalizeCSS>
+    <MantineProvider theme={{fontFamily: 'Roboto, sans-serif'}} withGlobalStyles withNormalizeCSS>
+      <GlobalStyles/>
       <Home />
     </MantineProvider>
   )

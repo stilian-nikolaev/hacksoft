@@ -1,23 +1,23 @@
 import React from 'react'
-import { Avatar, Header, Image, Text } from '@mantine/core'
+import { Avatar, Box, Image, } from '@mantine/core'
+import Header from './Header'
 
-export default function Layout({children}) {
+export default function Layout({ children }) {
     return (<>
-        <Header sx={{
+        <Header/>
+        <Image src="/orange-triangle.svg" sx={{ width: '56vw', position: 'fixed', zIndex: -1, top: 67, right: 0 }} />
+        <Image src="/gray-square.svg" sx={{ width: '53vw', position: 'fixed', zIndex: -1, bottom: 0 }} />
+        <Box sx={{
+            marginTop: 124,
             display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            height: 70,
-            paddingLeft: 50,
-            paddingRight: 50,
+            justifyContent: 'center'
         }}>
-            <Image
-                src="/logo.png"
-                alt="Hacksoft Logo"
-            />
-            <Avatar src="/avatar.jpg" size={36} radius="50%" alt="Avatar" />
-        </Header>
-        {children}
+            <Box sx={{
+                width: '58%',
+            }}>
+                {children}
+            </Box>
+        </Box>
     </>
 
     )
