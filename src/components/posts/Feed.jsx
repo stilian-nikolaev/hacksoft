@@ -9,9 +9,6 @@ export default function Feed() {
         <Box sx={{ width: '100%' }}>
             <CreatePostForm />
             <Post />
-            <Post />
-            <Post />
-            <Post />
         </Box>
     )
 }
