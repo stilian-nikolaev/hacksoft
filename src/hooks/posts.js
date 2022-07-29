@@ -11,3 +11,8 @@ export function usePosts() {
 
     return useQuery([endpoints.posts.all().url], fetchPosts);
 }
+
+export async function useCreatePost(data) {
+    const res = await apiClient.post(endpoints.posts.all().url, data);
+    return res.data;
+}

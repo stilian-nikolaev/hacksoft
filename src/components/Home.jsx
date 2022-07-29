@@ -1,7 +1,6 @@
 import { Avatar, Image, Text, UnstyledButton, Box, Center, MediaQuery } from '@mantine/core'
 import React from 'react'
 import { AuthStore } from '../stores/AuthStore'
-import CreatePostForm from './create-post/CreatePostForm'
 import Layout from './layout/Layout'
 import LoginForm from './login/LoginForm'
 import Feed from './posts/Feed'

@@ -1,7 +1,7 @@
 import { Box, Center, UnstyledButton, Text } from '@mantine/core'
 import React from 'react'
 import { usePosts } from '../../hooks/posts'
-import CreatePostForm from '../create-post/CreatePostForm'
+import CreatePostForm from './CreatePostForm'
 import LoadMoreButton from './LoadMoreButton'
 import Post from './Post'
 

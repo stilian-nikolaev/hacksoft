@@ -1,12 +1,12 @@
 import React from 'react'
 import { Box, Text } from '@mantine/core'
-import * as yup from 'yup'
 import { useMutation } from 'react-query'
 import { useLoginUser } from '../../hooks/auth'
 import TextField from '../common/TextField'
 import GenericButton from '../common/GenericButton'
 import GenericForm from '../common/GenericForm'
 import { AuthStore } from '../../stores/AuthStore'
+import * as yup from 'yup'
 
 const validationSchema = yup
   .object({

@@ -8,13 +8,11 @@ export default function TextField({ name,  ...props }) {
     // const message = meta.touched && meta.error ? `${props.placeholder} ${meta.error.split(' ').splice(1).join(' ')}` : '';
 
     return (
-        <Box>
             <TextInput
                 {...field}
                 {...props}
                 error={meta.error && meta.touched}
                 // description={message} 
                 />
-        </Box>
     )
 }
