@@ -6,6 +6,7 @@ import { useLoginUser } from '../../hooks/auth'
 import TextField from '../common/TextField'
 import GenericButton from '../common/GenericButton'
 import GenericForm from '../common/GenericForm'
+import { AuthStore } from '../../stores/AuthStore'
 
 const validationSchema = yup
   .object({
@@ -19,12 +20,13 @@ const initialValues = {
 }
 
 export default function LoginForm() {
+  const { login } = AuthStore
 
   const mutation = useMutation({
     mutationFn: data => useLoginUser(data),
     onSuccess: (res) => {
       // useConfigureHeaders(res.token);
-      // login(res.token, res.expiresAt)
+      login(res.idToken, /*res.expiresIn*/3600)
       // navigate('/workouts')
       console.log(res)
     }
