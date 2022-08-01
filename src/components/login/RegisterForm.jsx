@@ -10,14 +10,14 @@ import { useNavigate } from 'react-router-dom'
 import * as yup from 'yup'
 import { routerEndpoints } from '../../service/routerEndpoints'
 import { useCreateProfile } from '../../hooks/profile'
-import { ProfileStore } from '../../stores/ProfileStore'
 
 const validationSchema = yup
   .object({
     email: yup.string().email().required(),
     name: yup.string().trim().min(1).max(40).required(),
     occupation: yup.string().trim().min(1).max(40).required(),
-    password: yup.string().trim().min(1).max(40).required(),
+    password: yup.string().trim().min(6).max(40).required(),
+    imageURL: yup.string().trim().min(6).max(40).required(),
   })
 
 const initialValues = {
@@ -25,11 +25,11 @@ const initialValues = {
   password: '',
   name: '',
   occupation: '',
+  imageURL: ''
 }
 
 export default function RegisterForm() {
-  const { login } = AuthStore
-  const { setprofileId } = ProfileStore
+  const { login, setprofileId} = AuthStore
   const navigate = useNavigate();
 
   const mutationFn = async data => {
@@ -38,7 +38,8 @@ export default function RegisterForm() {
       name: data.name,
       occupation: data.occupation,
       likes: 0,
-      posts: 0
+      posts: 0,
+      imageURL: data.imageURL
     });
     return { ...authRes, profile: profileRes }
   }
@@ -110,6 +111,20 @@ export default function RegisterForm() {
             placeholder="Occupation*"
             label="Occupation"
             name="occupation"
+            size="lg"
+            required
+            sx={(theme) => ({
+              marginTop: '20px',
+              '& ::placeholder': {
+                color: `gray !important`
+
+              }
+            })}
+          />
+          <TextField
+            placeholder="Image URL*"
+            label="Image URL"
+            name="imageURL"
             size="lg"
             required
             sx={(theme) => ({

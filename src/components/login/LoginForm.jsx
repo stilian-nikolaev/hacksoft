@@ -9,7 +9,6 @@ import { AuthStore } from '../../stores/AuthStore'
 import { useNavigate } from 'react-router-dom'
 import * as yup from 'yup'
 import { routerEndpoints } from '../../service/routerEndpoints'
-import { ProfileStore } from '../../stores/ProfileStore'
 
 const validationSchema = yup
   .object({
@@ -23,9 +22,8 @@ const initialValues = {
 }
 
 export default function LoginForm() {
-  const { login } = AuthStore
+  const { login, setprofileId } = AuthStore
   const navigate = useNavigate()
-  const { setprofileId } = ProfileStore
 
   const mutation = useMutation({
     mutationFn: data => useLoginUser(data),
@@ -65,6 +63,7 @@ export default function LoginForm() {
             placeholder="Password*"
             label="Password"
             name="password"
+            type="password"
             size="lg"
             required
             sx={(theme) => ({

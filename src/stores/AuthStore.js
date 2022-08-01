@@ -1,14 +1,18 @@
 import { makeObservable, observable, action } from "mobx"
 
+const TOKEN_ITEM_NAME = 'token';
+const EXPIRESAT_ITEM_NAME = 'token';
+const PROFILEID_ITEM_NAME = 'token';
+
 function retrieveStoredToken() {
-    const storedToken = localStorage.getItem('token')
-    const storedExpiresAt = localStorage.getItem('expiresAt')
+    const storedToken = localStorage.getItem(TOKEN_ITEM_NAME)
+    const storedExpiresAt = localStorage.getItem(TOKEN_ITEM_NAME)
 
     const remainingTime = storedExpiresAt - Date.now()
     console.log(remainingTime);
     if (remainingTime <= 60000) {
-        localStorage.removeItem('token')
-        localStorage.removeItem('expiresAt')
+        localStorage.removeItem(TOKEN_ITEM_NAME)
+        localStorage.removeItem(TOKEN_ITEM_NAME)
         return null;
     }
 
@@ -20,6 +24,7 @@ class AuthStoreImpl {
     token = this.tokenData && this.tokenData.token
     isAuthenticated = !!(this.token)
     logoutTimer = null
+    profileId = localStorage.getItem(PROFILEID_ITEM_NAME)
 
     constructor() {
         makeObservable(this, {
@@ -27,11 +32,18 @@ class AuthStoreImpl {
             isAuthenticated: observable,
             login: action,
             logout: action,
+            setprofileId: action,
+            
         })
 
         if (this.tokenData) {
             this.logoutTimer = setTimeout(this.logout, this.tokenData.remainingTime)
         }
+    }
+
+    setprofileId = (id) => {
+        this.profileId = id;
+        localStorage.setItem(PROFILEID_ITEM_NAME, id)
     }
 
     login = (token, expiresIn) => {
@@ -40,8 +52,8 @@ class AuthStoreImpl {
 
         const remianingTimeInMilliseconds = expiresIn * 1000;
 
-        localStorage.setItem('token', token)
-        localStorage.setItem('expiresAt', Date.now() + remianingTimeInMilliseconds)
+        localStorage.setItem(TOKEN_ITEM_NAME, token)
+        localStorage.setItem(TOKEN_ITEM_NAME, Date.now() + remianingTimeInMilliseconds)
 
         this.logoutTimer = setTimeout(this.logout, remianingTimeInMilliseconds)
     }
@@ -49,9 +61,11 @@ class AuthStoreImpl {
     logout = () => {
         this.token = null
         this.isAuthenticated = false;
+        this.profileId = null
 
-        localStorage.removeItem('token')
-        localStorage.removeItem('expiresAt')
+        localStorage.removeItem(TOKEN_ITEM_NAME)
+        localStorage.removeItem(EXPIRESAT_ITEM_NAME)
+        localStorage.removeItem(PROFILEID_ITEM_NAME)
 
         clearTimeout(this.logoutTimer)
     }

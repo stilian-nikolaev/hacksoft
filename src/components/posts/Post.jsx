@@ -5,7 +5,7 @@ import PostContent from './PostContent'
 import PostHeader from './PostHeader'
 import PostLikes from './PostLikes'
 
-export default function Post({creator, occupation, postedAt, content, likes}) {
+export default function Post({creator, occupation, postedAt, content, likes, imageURL}) {
     return (
         <BorderBox sx={{ marginTop: 19,}}>
             <Box sx={{ borderBottom: '1px solid rgba(123, 124, 129, 0.2)', padding: '15px 15px 10px 15px' }}>
