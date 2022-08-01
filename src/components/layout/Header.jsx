@@ -2,6 +2,7 @@ import { Avatar, Box, Image, Menu } from '@mantine/core'
 import React from 'react'
 import { AuthStore } from '../../stores/AuthStore'
 import { useNavigate } from 'react-router-dom'
+import { routerEndpoints } from '../../service/routerEndpoints';
 
 export default function Header() {
     const { logout, isAuthenticated } = AuthStore;
@@ -9,7 +10,11 @@ export default function Header() {
 
     function handleLogoutClick() {
         logout();
-        navigate('/login')
+        navigate(routerEndpoints.login)
+    }
+
+    function handleLogoClick() {
+        navigate(routerEndpoints.home)
     }
 
     return (
@@ -33,6 +38,8 @@ export default function Header() {
             <Image
                 src="/logo.svg"
                 alt="Hacksoft Logo"
+                sx={{ '&:hover': { cursor: 'pointer' } }}
+                onClick={handleLogoClick}
             />
             {isAuthenticated &&
                 <Menu>

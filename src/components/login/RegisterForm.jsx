@@ -8,6 +8,7 @@ import GenericForm from '../common/GenericForm'
 import { AuthStore } from '../../stores/AuthStore'
 import { useNavigate } from 'react-router-dom'
 import * as yup from 'yup'
+import { routerEndpoints } from '../../service/routerEndpoints'
 
 const validationSchema = yup
   .object({
@@ -32,7 +33,7 @@ export default function RegisterForm() {
     mutationFn: data => useRegisterUser(data),
     onSuccess: (res) => {
       login(res.idToken, /*res.expiresIn*/3600)
-      navigate('/');
+      navigate(routerEndpoints.home);
 
     }
   })
