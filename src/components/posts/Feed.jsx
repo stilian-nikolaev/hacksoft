@@ -9,7 +9,7 @@ import Post from './Post'
 
 export default function Feed() {
     const { data, status } = usePosts();
-    
+
     if (status === 'loading') return <LoadingScreen />
 
     if (status === 'error') return <ErrorScreen/>
@@ -17,7 +17,7 @@ export default function Feed() {
     return (
         <Box sx={{ width: '100%' }}>
             <CreatePostForm />
-            {Object.keys(data).map(x => <Post
+            {Object.keys(data).reverse().map(x => <Post
                 key={x}
                 creator={data[x].creator}
                 occupation={data[x].creatorOccupation}

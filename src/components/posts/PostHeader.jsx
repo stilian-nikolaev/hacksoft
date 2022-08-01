@@ -1,7 +1,8 @@
 import { Avatar, Box, Text } from '@mantine/core'
 import React from 'react'
+import PostTime from './PostTime'
 
-export default function PostHeader({name, occupation}) {
+export default function PostHeader({ name, occupation, createdAt }) {
     return (
         <Box sx={{
             '@media (min-width: 551px)': {
@@ -16,15 +17,7 @@ export default function PostHeader({name, occupation}) {
                     <Text sx={{ fontSize: 14, color: '#65676B' }}>{occupation}</Text>
                 </Box>
             </Box>
-            <Text sx={{
-                fontSize: 12,
-                color: '#65676B',
-                '@media (max-width: 550px)': {
-                    marginTop: 10
-                },
-            }}>
-                20 minutes ago
-            </Text>
+            <PostTime createdAt={createdAt} />
         </Box>
     )
 }
