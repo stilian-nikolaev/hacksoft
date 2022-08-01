@@ -9,6 +9,8 @@ import { AuthStore } from '../../stores/AuthStore'
 import { useNavigate } from 'react-router-dom'
 import * as yup from 'yup'
 import { routerEndpoints } from '../../service/routerEndpoints'
+import { useCreateProfile } from '../../hooks/profile'
+import { ProfileStore } from '../../stores/ProfileStore'
 
 const validationSchema = yup
   .object({
@@ -27,14 +29,27 @@ const initialValues = {
 
 export default function RegisterForm() {
   const { login } = AuthStore
+  const { setprofileId } = ProfileStore
   const navigate = useNavigate();
 
-  const mutation = useMutation({
-    mutationFn: data => useRegisterUser(data),
-    onSuccess: (res) => {
-      login(res.idToken, /*res.expiresIn*/3600)
-      navigate(routerEndpoints.home);
+  const mutationFn = async data => {
+    const authRes = await useRegisterUser({ email: data.email, password: data.password });
+    const profileRes = await useCreateProfile(authRes.localId, {
+      name: data.name,
+      occupation: data.occupation,
+      likes: 0,
+      posts: 0
+    });
+    return { ...authRes, profile: profileRes }
+  }
 
+  const mutation = useMutation({
+    mutationFn,
+    onSuccess: (res) => {
+      console.log(res);
+      login(res.idToken, /*res.expiresIn*/3600)
+      setprofileId(res.localId);
+      navigate(routerEndpoints.home);
     }
   })
 
@@ -45,7 +60,7 @@ export default function RegisterForm() {
 
   return (
     <GenericForm validationSchema={validationSchema} initialValues={initialValues} onSubmit={handleSubmit}>
-      <Box sx={{display: 'flex', justifyContent: 'center', }}>
+      <Box sx={{ display: 'flex', justifyContent: 'center', }}>
         <Box sx={{ width: '50%' }}>
           <Text sx={{ fontSize: '22px', textAlign: 'center' }}>Register to HacksoftFeed</Text>
           <TextField
@@ -106,7 +121,7 @@ export default function RegisterForm() {
             })}
           />
           <Box sx={{ display: 'flex', marginTop: 40 }}>
-            <GenericButton type="submit" sx={{width: 'auto'}}>
+            <GenericButton type="submit" sx={{ width: 'auto' }}>
               Log in
             </GenericButton>
             {/* <Text sx={{ marginLeft: 20 }}>

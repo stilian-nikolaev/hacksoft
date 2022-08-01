@@ -9,6 +9,7 @@ import { AuthStore } from '../../stores/AuthStore'
 import { useNavigate } from 'react-router-dom'
 import * as yup from 'yup'
 import { routerEndpoints } from '../../service/routerEndpoints'
+import { ProfileStore } from '../../stores/ProfileStore'
 
 const validationSchema = yup
   .object({
@@ -24,11 +25,14 @@ const initialValues = {
 export default function LoginForm() {
   const { login } = AuthStore
   const navigate = useNavigate()
+  const { setprofileId } = ProfileStore
 
   const mutation = useMutation({
     mutationFn: data => useLoginUser(data),
     onSuccess: (res) => {
+      console.log(res);
       login(res.idToken, /*res.expiresIn*/3600)
+      setprofileId(res.localId);
       navigate(routerEndpoints.home)
     }
   })
