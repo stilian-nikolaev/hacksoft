@@ -1,7 +1,14 @@
-import { Avatar, Box, Image } from '@mantine/core'
+import { Avatar, Box, Image, Menu } from '@mantine/core'
 import React from 'react'
+import { AuthStore } from '../../stores/AuthStore'
 
 export default function Header() {
+    const { logout, isAuthenticated } = AuthStore;
+
+    function handleLogoutClick() {
+        logout();
+    }
+
     return (
         <Box sx={{
             position: 'fixed',
@@ -18,13 +25,24 @@ export default function Header() {
             '@media (max-width: 400px)': {
                 padding: '0 30px'
             }
-            
+
         }}>
             <Image
                 src="/logo.svg"
                 alt="Hacksoft Logo"
             />
-            <Avatar src="/avatar.jpg" size={36} radius="50%" alt="Avatar" />
+            {isAuthenticated &&
+                <Menu>
+                    <Menu.Target>
+                        <Avatar src="/avatar.jpg" size={36} sx={{ '&:hover': { cursor: 'pointer' } }} radius="50%" alt="Avatar" />
+                    </Menu.Target>
+                    <Menu.Dropdown>
+                        <Menu.Item onClick={handleLogoutClick}>
+                            Logout
+                        </Menu.Item>
+                    </Menu.Dropdown>
+                </Menu>
+            }
         </Box>
     )
 }
