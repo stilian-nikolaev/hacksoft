@@ -1,7 +1,7 @@
 import React from 'react'
 import { Box, Text } from '@mantine/core'
 import { useMutation } from 'react-query'
-import { useLoginUser } from '../../hooks/auth'
+import { useLoginUser, useRegisterUser } from '../../hooks/auth'
 import TextField from '../common/TextField'
 import GenericButton from '../common/GenericButton'
 import GenericForm from '../common/GenericForm'
@@ -12,23 +12,28 @@ import * as yup from 'yup'
 const validationSchema = yup
   .object({
     email: yup.string().email().required(),
+    name: yup.string().trim().min(1).max(40).required(),
+    occupation: yup.string().trim().min(1).max(40).required(),
     password: yup.string().trim().min(1).max(40).required(),
   })
 
 const initialValues = {
   email: '',
-  password: ''
+  password: '',
+  name: '',
+  occupation: '',
 }
 
-export default function LoginForm() {
+export default function RegisterForm() {
   const { login } = AuthStore
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const mutation = useMutation({
-    mutationFn: data => useLoginUser(data),
+    mutationFn: data => useRegisterUser(data),
     onSuccess: (res) => {
       login(res.idToken, /*res.expiresIn*/3600)
-      navigate('/')
+      navigate('/');
+
     }
   })
 
@@ -41,7 +46,7 @@ export default function LoginForm() {
     <GenericForm validationSchema={validationSchema} initialValues={initialValues} onSubmit={handleSubmit}>
       <Box sx={{display: 'flex', justifyContent: 'center', }}>
         <Box sx={{ width: '50%' }}>
-          <Text sx={{ fontSize: '22px', textAlign: 'center' }}>Log in to HacksoftFeed</Text>
+          <Text sx={{ fontSize: '22px', textAlign: 'center' }}>Register to HacksoftFeed</Text>
           <TextField
             placeholder="Email*"
             label="Email"
@@ -60,6 +65,35 @@ export default function LoginForm() {
             placeholder="Password*"
             label="Password"
             name="password"
+            type="password"
+            size="lg"
+            required
+            sx={(theme) => ({
+              marginTop: '20px',
+              '& ::placeholder': {
+                color: `gray !important`
+
+              }
+            })}
+          />
+          <TextField
+            placeholder="Name*"
+            label="Name"
+            name="name"
+            size="lg"
+            required
+            sx={(theme) => ({
+              marginTop: '20px',
+              '& ::placeholder': {
+                color: `gray !important`
+
+              }
+            })}
+          />
+          <TextField
+            placeholder="Occupation*"
+            label="Occupation"
+            name="occupation"
             size="lg"
             required
             sx={(theme) => ({

@@ -1,12 +1,15 @@
 import { Avatar, Box, Image, Menu } from '@mantine/core'
 import React from 'react'
 import { AuthStore } from '../../stores/AuthStore'
+import { useNavigate } from 'react-router-dom'
 
 export default function Header() {
     const { logout, isAuthenticated } = AuthStore;
+    const navigate = useNavigate()
 
     function handleLogoutClick() {
         logout();
+        navigate('/login')
     }
 
     return (

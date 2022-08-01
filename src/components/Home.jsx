@@ -8,25 +8,14 @@ import ProfileCard from './profile/ProfileCard'
 import { observer } from 'mobx-react';
 
 export default observer(function Home() {
-    const { isAuthenticated } = AuthStore;
-
     return (
-        <Layout>
-            {isAuthenticated
-                ?
-                <Box sx={{
-                    '@media (min-width: 1000px)': {
-                        display: 'flex'
-                    }
-                }}>
-                    <ProfileCard />
-                    <Feed />
-                </Box>
-                :
-                <LoginForm />
-            }
-
-
-        </Layout >
+            <Box sx={{
+                '@media (min-width: 1000px)': {
+                    display: 'flex'
+                }
+            }}>
+                <ProfileCard />
+                <Feed />
+            </Box>
     )
 })
