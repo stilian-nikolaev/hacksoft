@@ -15,3 +15,8 @@ export function useProfile(id) {
 
     return useQuery([endpoints.profiles.one(id).url], fetchProfile);
 }
+
+export async function useEditProfile(id, data) {
+    const res = await apiClient.patch(endpoints.profiles.one(id).url, data);
+    return res.data;
+}

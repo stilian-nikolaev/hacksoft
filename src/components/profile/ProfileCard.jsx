@@ -8,15 +8,8 @@ import LoadingScreen from '../common/LoadingScreen';
 import ProfileInfo from './ProfileInfo'
 import ProfileStats from './ProfileStats'
 
-export default observer(function ProfileCard() {
-    const { profileId } = AuthStore;
-    const { data, status } = useProfile(profileId);
-
-    if (status === 'loading') return <LoadingScreen />
-
-    if (status === 'error') return <ErrorScreen />
-
-    console.log(data);
+export default observer(function ProfileCard({name, occupation, imageURL, likes, posts}) {
+    
     return (
         <BorderBox sx={{
             minWidth: 220,
@@ -27,8 +20,8 @@ export default observer(function ProfileCard() {
             marginRight: 20,
             marginBottom: 20,
         }}>
-            <ProfileInfo name={data.name} occupation={data.occupation} imageURL={data.imageURL} />
-            <ProfileStats likes={data.likes} posts={data.posts}/>
+            <ProfileInfo name={name} occupation={occupation} imageURL={imageURL} />
+            <ProfileStats likes={likes} posts={posts}/>
         </BorderBox>
     )
 })

@@ -8,6 +8,8 @@ import * as yup from 'yup'
 import { useCreatePost } from '../../hooks/posts'
 import { useMutation, useQueryClient } from 'react-query'
 import { endpoints } from '../../service/apiEndpoints'
+import { AuthStore } from '../../stores/AuthStore'
+import { useEditProfile } from '../../hooks/profile'
 
 const validationSchema = yup
     .object({
@@ -18,11 +20,19 @@ const initialValues = {
     content: ''
 }
 
-export default function CreatePostForm() {
+export default function CreatePostForm({profilePosts}) {
     const queryClient = useQueryClient();
+    const { profileId } = AuthStore;
+
+    const mutationFn = data => {
+        const postRes = useCreatePost(data)
+        const profileRes = useEditProfile(profileId, { posts: profilePosts + 1})
+
+        return Promise.all([postRes, profileRes])
+    }
 
     const mutation = useMutation({
-        mutationFn: data => useCreatePost(data),
+        mutationFn,
         onSuccess: (res) => {
             queryClient.invalidateQueries(endpoints.posts.all().url)
                 .then(() => console.log(res))
@@ -30,7 +40,6 @@ export default function CreatePostForm() {
     })
 
     function handleSubmit(data, bag) {
-        console.log(bag);
         bag.setFieldValue('content','')
         mutation.mutate({ ...data, creator: 'Stilian Nikolaev', creatorOccupation: 'Co-Founder, HackSoft', likes: 17, postedAt: Date.now()})
     }
