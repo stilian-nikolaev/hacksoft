@@ -9,7 +9,9 @@ import { useCreatePost } from '../../hooks/posts'
 import { useMutation, useQueryClient } from 'react-query'
 import { endpoints } from '../../service/apiEndpoints'
 import { AuthStore } from '../../stores/AuthStore'
-import { useEditProfile } from '../../hooks/profile'
+import { useEditProfile, useProfile } from '../../hooks/profile'
+import LoadingScreen from '../common/LoadingScreen'
+import ErrorScreen from '../common/ErrorScreen'
 
 const validationSchema = yup
     .object({
@@ -20,13 +22,13 @@ const initialValues = {
     content: ''
 }
 
-export default function CreatePostForm({profilePosts}) {
+export default function CreatePostForm({posts, name, occupation, imageURL}) {
     const queryClient = useQueryClient();
     const { profileId } = AuthStore;
-
+    
     const mutationFn = data => {
         const postRes = useCreatePost(data)
-        const profileRes = useEditProfile(profileId, { posts: profilePosts + 1})
+        const profileRes = useEditProfile(profileId, { posts: posts + 1 })
 
         return Promise.all([postRes, profileRes])
     }
@@ -40,8 +42,17 @@ export default function CreatePostForm({profilePosts}) {
     })
 
     function handleSubmit(data, bag) {
-        bag.setFieldValue('content','')
-        mutation.mutate({ ...data, creator: 'Stilian Nikolaev', creatorOccupation: 'Co-Founder, HackSoft', likes: 17, postedAt: Date.now()})
+        bag.setFieldValue('content', '')
+        mutation.mutate({
+            ...data, 
+            creator: {
+                name,
+                occupation,
+                imageURL,
+            },
+            likes: 0,
+            postedAt: Date.now(),
+        })
     }
 
     return (

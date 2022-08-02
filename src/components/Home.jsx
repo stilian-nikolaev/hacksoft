@@ -17,16 +17,14 @@ export default observer(function Home() {
     if (status === 'loading') return <LoadingScreen />
 
     if (status === 'error') return <ErrorScreen />
-
-
     return (
         <Box sx={{
             '@media (min-width: 1000px)': {
                 display: 'flex'
             }
         }}>
-            <ProfileCard name={data.name} occupation={data.occupation} imageURL={data.imageURL} likes={data.likes} posts={data.posts} />
-            <Feed profilePosts={data.posts}/>
+            <ProfileCard {...data}/>
+            <Feed {...data} />
         </Box>
     )
 })

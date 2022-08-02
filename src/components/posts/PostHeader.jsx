@@ -2,7 +2,8 @@ import { Avatar, Box, Text } from '@mantine/core'
 import React from 'react'
 import PostTime from './PostTime'
 
-export default function PostHeader({ name, occupation, createdAt }) {
+export default function PostHeader({ name, occupation, createdAt, imageURL }) {
+    
     return (
         <Box sx={{
             '@media (min-width: 551px)': {
@@ -11,7 +12,7 @@ export default function PostHeader({ name, occupation, createdAt }) {
             },
         }}>
             <Box sx={{ display: 'flex', marginRight: 10 }}>
-                <Avatar src="/avatar.jpg" size={48} radius="50%" alt="Avatar" />
+                <Avatar src={imageURL} size={48} radius="50%" alt="Avatar" />
                 <Box sx={{ marginLeft: 10, alignSelf: 'center' }}>
                     <Text sx={{ fontSize: 16, fontWeight: 500 }}>{name}</Text>
                     <Text sx={{ fontSize: 14, color: '#65676B' }}>{occupation}</Text>

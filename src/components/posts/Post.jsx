@@ -4,12 +4,12 @@ import BorderBox from '../common/BorderBox'
 import PostContent from './PostContent'
 import PostHeader from './PostHeader'
 import PostLikes from './PostLikes'
+export default function Post({ postedAt, content, likes, creator}) {
 
-export default function Post({creator, occupation, postedAt, content, likes, imageURL}) {
     return (
         <BorderBox sx={{ marginTop: 19,}}>
             <Box sx={{ borderBottom: '1px solid rgba(123, 124, 129, 0.2)', padding: '15px 15px 10px 15px' }}>
-                <PostHeader name={creator} occupation={occupation} createdAt={postedAt} />
+                <PostHeader name={creator?.name} occupation={creator?.occupation} createdAt={postedAt} imageURL={creator?.imageURL}/>
                 <PostContent content={content}/>
                 <PostLikes likes={likes}/>
             </Box>

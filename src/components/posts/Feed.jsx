@@ -7,21 +7,21 @@ import CreatePostForm from './CreatePostForm'
 import LoadMoreButton from './LoadMoreButton'
 import Post from './Post'
 
-export default function Feed({profilePosts}) {
+export default function Feed(profileData) {
     const { data, status } = usePosts();
-
+    
     if (status === 'loading') return <LoadingScreen />
 
     if (status === 'error') return <ErrorScreen/>
+    const posts = Object.keys(data).reverse();
 
     return (
         <Box sx={{ width: '100%' }}>
-            <CreatePostForm profilePosts={profilePosts}/>
-            {Object.keys(data).reverse().map(x => <Post
+            <CreatePostForm {...profileData} />
+            {posts?.map(x => <Post
                 key={x}
-                creator={data[x].creator}
-                occupation={data[x].creatorOccupation}
                 postedAt={data[x].postedAt}
+                creator={data[x].creator}
                 content={data[x].content}
                 likes={data[x].likes}
             />)}

@@ -21,7 +21,7 @@ export default observer(function ProfileCard({name, occupation, imageURL, likes,
             marginBottom: 20,
         }}>
             <ProfileInfo name={name} occupation={occupation} imageURL={imageURL} />
-            <ProfileStats likes={likes} posts={posts}/>
+            <ProfileStats likes={likes} posts={posts} />
         </BorderBox>
     )
 })
