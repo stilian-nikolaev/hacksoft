@@ -7,7 +7,8 @@ export const endpoints = {
     },
     profiles: {
         all: () => ({ url: '/profiles.json' }),
-        one: slug => ({ url: `/profiles/${slug}.json` })
+        one: slug => ({ url: `/profiles/${slug}.json` }),
+        image: slug => ({ url: `/profiles/${slug}/imageURL.json` })
     },
     auth: {
         login: () => ({ url: `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${API_KEY}` }),

@@ -3,15 +3,13 @@ import React from 'react'
 import { AuthStore } from '../../stores/AuthStore'
 import { useNavigate } from 'react-router-dom'
 import { routerEndpoints } from '../../service/routerEndpoints';
+import { useProfileImageURL } from '../../hooks/profile';
+import { observer } from 'mobx-react';
+import ProfileAvatar from './ProfileAvatar';
 
-export default function Header() {
-    const { logout, isAuthenticated } = AuthStore;
+export default observer(function Header() {
+    const { isAuthenticated} = AuthStore;
     const navigate = useNavigate()
-
-    function handleLogoutClick() {
-        logout();
-        navigate(routerEndpoints.login)
-    }
 
     function handleLogoClick() {
         navigate(routerEndpoints.home)
@@ -41,18 +39,7 @@ export default function Header() {
                 sx={{ '&:hover': { cursor: 'pointer' } }}
                 onClick={handleLogoClick}
             />
-            {isAuthenticated &&
-                <Menu>
-                    <Menu.Target>
-                        <Avatar src="/avatar.jpg" size={36} sx={{ '&:hover': { cursor: 'pointer' } }} radius="50%" alt="Avatar" />
-                    </Menu.Target>
-                    <Menu.Dropdown>
-                        <Menu.Item onClick={handleLogoutClick}>
-                            Logout
-                        </Menu.Item>
-                    </Menu.Dropdown>
-                </Menu>
-            }
+            {isAuthenticated && <ProfileAvatar />}
         </Box>
     )
-}
+})

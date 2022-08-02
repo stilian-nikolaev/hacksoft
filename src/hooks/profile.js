@@ -20,3 +20,12 @@ export async function useEditProfile(id, data) {
     const res = await apiClient.patch(endpoints.profiles.one(id).url, data);
     return res.data;
 }
+
+export function useProfileImageURL(id) {
+    async function fetchProfileImage() {
+        const res = await apiClient.get(endpoints.profiles.image(id).url);
+        return res.data;
+    }
+
+    return useQuery([endpoints.profiles.image(id).url], fetchProfileImage);
+}
