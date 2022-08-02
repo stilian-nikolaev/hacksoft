@@ -20,6 +20,7 @@ export default function Feed(profileData) {
             <CreatePostForm {...profileData} />
             {posts?.map(x => <Post
                 key={x}
+                id={x}
                 postedAt={data[x].postedAt}
                 creator={data[x].creator}
                 content={data[x].content}

@@ -16,3 +16,8 @@ export async function useCreatePost(data) {
     const res = await apiClient.post(endpoints.posts.all().url, data);
     return res.data;
 }
+
+export async function useEditPost(id, data) {
+    const res = await apiClient.patch(endpoints.posts.one(id).url, data);
+    return res.data;
+}
