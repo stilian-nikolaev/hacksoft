@@ -50,7 +50,8 @@ export default function CreatePostForm({posts, name, occupation, imageURL}) {
                 occupation,
                 imageURL,
             },
-            likes: 0,
+            likeCount: 0,
+            likedBy: [],
             postedAt: Date.now(),
         })
     }

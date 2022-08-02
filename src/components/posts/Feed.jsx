@@ -24,7 +24,9 @@ export default function Feed(profileData) {
                 postedAt={data[x].postedAt}
                 creator={data[x].creator}
                 content={data[x].content}
-                likes={data[x].likes}
+                likeCount={data[x].likeCount}
+                likedBy={data[x].likedBy}
+                profileLikes={profileData.likes}
             />)}
             <LoadMoreButton />
         </Box >
