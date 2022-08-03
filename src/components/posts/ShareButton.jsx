@@ -13,6 +13,7 @@ export default function ShareButton({content, profileData}) {
     function handleShareClick() {
         mutation.mutate({
             content,
+            creatorId: profileId,
             creator: {
                 name: profileData.name,
                 occupation: profileData.occupation,

@@ -22,13 +22,13 @@ const initialValues = {
     content: ''
 }
 
-export default function CreatePostForm({posts, name, occupation, imageURL}) {
+export default function CreatePostForm({ profilePosts }) {
     const queryClient = useQueryClient();
     const { profileId } = AuthStore;
     
     const mutationFn = data => {
         const postRes = useCreatePost(data)
-        const profileRes = useEditProfile(profileId, { posts: posts + 1 })
+        const profileRes = useEditProfile(profileId, { posts: profilePosts + 1 })
 
         return Promise.all([postRes, profileRes])
     }
@@ -45,11 +45,7 @@ export default function CreatePostForm({posts, name, occupation, imageURL}) {
         bag.setFieldValue('content', '')
         mutation.mutate({
             ...data, 
-            creator: {
-                name,
-                occupation,
-                imageURL,
-            },
+            creatorId: profileId,
             likeCount: 0,
             likedBy: [],
             postedAt: Date.now(),

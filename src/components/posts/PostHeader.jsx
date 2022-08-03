@@ -2,8 +2,10 @@ import { Avatar, Box, Text } from '@mantine/core'
 import React from 'react'
 import PostTime from './PostTime'
 
-export default function PostHeader({ name, occupation, createdAt, imageURL }) {
+export default function PostHeader({ name, occupation, createdAt, imageURL, creatorId }) {
     
+    console.log(creatorId);
+
     return (
         <Box sx={{
             '@media (min-width: 551px)': {

@@ -15,7 +15,7 @@ const validationSchema = yup
     .object({
         name: yup.string().trim().min(1).max(40).required(),
         occupation: yup.string().trim().min(1).max(40).required(),
-        imageURL: yup.string().trim().min(6).max(500).required(),
+        imageURL: yup.string().trim().min(6).max(800).required(),
     })
 
 

@@ -17,12 +17,12 @@ export default function Feed(profileData) {
 
     return (
         <Box sx={{ width: '100%' }}>
-            <CreatePostForm {...profileData} />
+            <CreatePostForm profilePosts={profileData.posts} />
             {posts?.map(x => <Post
                 key={x}
                 id={x}
                 postedAt={data[x].postedAt}
-                creator={data[x].creator}
+                creatorId={data[x].creatorId}
                 content={data[x].content}
                 likeCount={data[x].likeCount}
                 likedBy={data[x].likedBy}
