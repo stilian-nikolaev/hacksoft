@@ -1,5 +1,5 @@
 import { Box, Center, UnstyledButton, Text, Loader } from '@mantine/core'
-import React from 'react'
+import React, { useState } from 'react'
 import { usePosts } from '../../hooks/posts'
 import ErrorScreen from '../common/ErrorScreen'
 import LoadingScreen from '../common/LoadingScreen'
@@ -9,16 +9,20 @@ import Post from './Post'
 
 export default function Feed(profileData) {
     const { data, status } = usePosts();
-    
+    const [step, setStep] = useState(5);
+
     if (status === 'loading') return <LoadingScreen />
 
-    if (status === 'error') return <ErrorScreen/>
-    const posts = Object.keys(data).reverse();
+    if (status === 'error') return <ErrorScreen />
 
+    const nextStep = () => setStep(prev => prev + 5)
+
+    const posts = Object.keys(data).reverse();
+    
     return (
         <Box sx={{ width: '100%' }}>
             <CreatePostForm profilePosts={profileData.posts} />
-            {posts?.map(x => <Post
+            {posts?.slice(0, step).map(x => <Post
                 key={x}
                 id={x}
                 postedAt={data[x].postedAt}
@@ -29,7 +33,7 @@ export default function Feed(profileData) {
                 profileLikes={profileData.likes}
                 profileData={profileData}
             />)}
-            <LoadMoreButton />
+            {step < posts.length && <LoadMoreButton nextStep={nextStep} />}
         </Box >
     )
 }

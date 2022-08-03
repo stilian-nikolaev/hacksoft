@@ -28,7 +28,7 @@ export default function LoginForm() {
   const mutation = useMutation({
     mutationFn: data => useLoginUser(data),
     onSuccess: (res) => {
-      login(res.idToken, /*res.expiresIn*/3600)
+      login(res.idToken, res.expiresIn)
       setprofileId(res.localId);
       navigate(routerEndpoints.home)
     }

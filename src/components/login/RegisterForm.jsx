@@ -47,7 +47,7 @@ export default function RegisterForm() {
   const mutation = useMutation({
     mutationFn,
     onSuccess: (res) => {
-      login(res.idToken, /*res.expiresIn*/3600)
+      login(res.idToken, res.expiresIn)
       setprofileId(res.localId);
       navigate(routerEndpoints.home);
     }

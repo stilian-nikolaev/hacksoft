@@ -33,7 +33,7 @@ class AuthStoreImpl {
             login: action,
             logout: action,
             setprofileId: action,
-            
+
         })
 
         if (this.tokenData) {
@@ -46,7 +46,7 @@ class AuthStoreImpl {
         localStorage.setItem(PROFILEID_ITEM_NAME, id)
     }
 
-    login = (token, expiresIn) => {
+    login = (token, expiresIn = 3600) => {
         this.token = token;
         this.isAuthenticated = true;
 

@@ -3,8 +3,6 @@ import React from 'react'
 import PostTime from './PostTime'
 
 export default function PostHeader({ name, occupation, createdAt, imageURL, creatorId }) {
-    
-    console.log(creatorId);
 
     return (
         <Box sx={{

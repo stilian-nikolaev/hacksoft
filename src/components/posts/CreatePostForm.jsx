@@ -15,7 +15,7 @@ import ErrorScreen from '../common/ErrorScreen'
 
 const validationSchema = yup
     .object({
-        content: yup.string().trim().min(1).max(200).required(),
+        content: yup.string().trim().min(1).max(1000).required(),
     })
 
 const initialValues = {
