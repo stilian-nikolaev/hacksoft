@@ -1,5 +1,5 @@
-import { Text } from '@mantine/core'
 import React from 'react'
+import { Text } from '@mantine/core'
 
 const SECONDS_TO_MINUTES = 60;
 const SECONDS_TO_HOURS = 3600;

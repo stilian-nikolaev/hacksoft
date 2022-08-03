@@ -1,13 +1,14 @@
 import React from 'react'
-import { Box, Text } from '@mantine/core'
 import { useMutation } from 'react-query'
+import { useNavigate } from 'react-router-dom'
+import { Box, Text } from '@mantine/core'
+import * as yup from 'yup'
+
 import { useLoginUser } from '../../hooks/auth'
 import TextField from '../common/TextField'
 import GenericButton from '../common/GenericButton'
 import GenericForm from '../common/GenericForm'
 import { AuthStore } from '../../stores/AuthStore'
-import { useNavigate } from 'react-router-dom'
-import * as yup from 'yup'
 import { routerEndpoints } from '../../service/routerEndpoints'
 
 const validationSchema = yup
@@ -43,7 +44,6 @@ export default function LoginForm() {
 
   }
 
-
   return (
     <GenericForm validationSchema={validationSchema} initialValues={initialValues} onSubmit={handleSubmit}>
       <Box sx={{ display: 'flex', justifyContent: 'center', }}>
@@ -55,13 +55,7 @@ export default function LoginForm() {
             name="email"
             size="lg"
             required
-            sx={(theme) => ({
-              marginTop: '20px',
-              '& ::placeholder': {
-                color: `gray !important`
-
-              }
-            })}
+            sx={{ marginTop: '20px', '& ::placeholder': { color: `gray !important` } }}
           />
           <TextField
             placeholder="Password*"
@@ -70,13 +64,7 @@ export default function LoginForm() {
             type="password"
             size="lg"
             required
-            sx={(theme) => ({
-              marginTop: '20px',
-              '& ::placeholder': {
-                color: `gray !important`
-
-              }
-            })}
+            sx={{ marginTop: '20px', '& ::placeholder': { color: `gray !important` } }}
           />
           <Box sx={{ display: 'flex', alignItems: 'center', marginTop: 20 }}>
             <GenericButton type="submit" sx={{ width: 'auto' }}>
@@ -86,7 +74,7 @@ export default function LoginForm() {
               Don't have an account?
               <Text
                 onClick={handleSignUpClick}
-                sx={(theme) => ({
+                sx={{
                   backgroundImage: `linear-gradient(black, black)`,
                   width: '100px',
                   backgroundSize: '0% 2px',
@@ -97,7 +85,7 @@ export default function LoginForm() {
                     backgroundSize: '100% 2px',
                     cursor: 'pointer'
                   }
-                })}>
+                }}>
                 Sign up here
               </Text>
             </Text>

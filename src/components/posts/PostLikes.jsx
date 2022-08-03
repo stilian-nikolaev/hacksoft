@@ -1,5 +1,5 @@
-import { Box, Image, Text } from '@mantine/core'
 import React from 'react'
+import { Box, Image, Text } from '@mantine/core'
 
 export default function PostLikes({ likeCount }) {
   return (

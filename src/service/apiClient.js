@@ -1,12 +1,8 @@
 import axios from "axios";
-// import { AuthStore } from "../stores/AuthStore";
 
+//usually in a .env file, not stored here
 const API_URL = 'https://hacksoft-eee8a-default-rtdb.europe-west1.firebasedatabase.app'
-// const { token } = AuthStore;
 
 export const apiClient = axios.create({
     baseURL: API_URL,
-    // headers: {
-    //     'Authorization': `Bearer ${token}`
-    // }
 })

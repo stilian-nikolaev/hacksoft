@@ -1,16 +1,16 @@
-import { Box, Image, Text } from '@mantine/core'
-import React, { useState } from 'react'
-import BorderBox from '../common/BorderBox'
+import React from 'react'
+import { Box, Text } from '@mantine/core'
+
 import PostContent from './PostContent'
 import PostHeader from './PostHeader'
 import PostLikes from './PostLikes'
 import LikeButton from './LikeButton.'
 import ShareButton from './ShareButton'
-import { useProfile } from '../../hooks/profile'
+import BorderBox from '../common/BorderBox'
 import LoadingScreen from '../common/LoadingScreen'
-import ErrorScreen from '../common/ErrorScreen'
+import { useProfile } from '../../hooks/profile'
 
-export default function Post({ postedAt, content, creatorId, profileData, ...likesData}) {
+export default function Post({ postedAt, content, creatorId, profileData, ...likesData }) {
     const { data, status } = useProfile(creatorId);
 
     if (status === 'loading') return <LoadingScreen />
@@ -20,7 +20,7 @@ export default function Post({ postedAt, content, creatorId, profileData, ...lik
     return (
         <BorderBox sx={{ marginTop: 19, }}>
             <Box sx={{ borderBottom: '1px solid rgba(123, 124, 129, 0.2)', padding: '15px 15px 10px 15px' }}>
-                <PostHeader creatorId={creatorId} name={data.name} occupation={data.occupation} createdAt={postedAt} imageURL={data.imageURL} />
+                <PostHeader creatorId={creatorId} createdAt={postedAt} {...data} />
                 <PostContent content={content} />
                 <PostLikes likeCount={likesData.likeCount} />
             </Box>

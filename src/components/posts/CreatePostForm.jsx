@@ -1,17 +1,16 @@
-import { Box, Text, Textarea } from '@mantine/core'
 import React from 'react'
+import { useMutation, useQueryClient } from 'react-query'
+import * as yup from 'yup'
+import { Box } from '@mantine/core'
+
 import BorderBox from '../common/BorderBox'
 import GenericButton from '../common/GenericButton'
 import GenericForm from '../common/GenericForm'
 import TextAreaField from '../common/TextAreaField'
-import * as yup from 'yup'
 import { useCreatePost } from '../../hooks/posts'
-import { useMutation, useQueryClient } from 'react-query'
+import { useEditProfile } from '../../hooks/profile'
 import { endpoints } from '../../service/apiEndpoints'
 import { AuthStore } from '../../stores/AuthStore'
-import { useEditProfile, useProfile } from '../../hooks/profile'
-import LoadingScreen from '../common/LoadingScreen'
-import ErrorScreen from '../common/ErrorScreen'
 
 const validationSchema = yup
     .object({
@@ -25,7 +24,7 @@ const initialValues = {
 export default function CreatePostForm({ profilePosts }) {
     const queryClient = useQueryClient();
     const { profileId } = AuthStore;
-    
+
     const mutationFn = data => {
         const postRes = useCreatePost(data)
         const profileRes = useEditProfile(profileId, { posts: profilePosts + 1 })
@@ -35,16 +34,15 @@ export default function CreatePostForm({ profilePosts }) {
 
     const mutation = useMutation({
         mutationFn,
-        onSuccess: (res) => {
+        onSuccess: () => {
             queryClient.invalidateQueries(endpoints.posts.all().url)
-                .then(() => console.log(res))
         }
     })
 
     function handleSubmit(data, bag) {
         bag.setFieldValue('content', '')
         mutation.mutate({
-            ...data, 
+            ...data,
             creatorId: profileId,
             likeCount: 0,
             likedBy: [],

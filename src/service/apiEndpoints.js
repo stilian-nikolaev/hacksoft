@@ -1,3 +1,4 @@
+//usually in a .env file, not stored here
 const API_KEY = 'AIzaSyDtQEiPRQr7b4THoPZWSvRNaPbVSKq0x_U'
 
 export const endpoints = {

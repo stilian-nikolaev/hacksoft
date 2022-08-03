@@ -5,16 +5,16 @@ import { routerEndpoints } from '../service/routerEndpoints'
 
 import { AuthStore } from '../stores/AuthStore'
 import NotFoundPage from './common/NotFoundPage'
-import Home from './Home'
-import LoginForm from './login/LoginForm'
-import RegisterForm from './login/RegisterForm'
+import HomePage from './pages/HomePage'
+import LoginForm from './auth/LoginForm'
+import RegisterForm from './auth/RegisterForm'
 
 export default observer(function Router() {
     const { isAuthenticated } = AuthStore
 
     return (isAuthenticated ?
         <Routes>
-            <Route path={routerEndpoints.home} element={<Home />} />
+            <Route path={routerEndpoints.home} element={<HomePage />} />
             <Route path='/*' element={<NotFoundPage />} />
         </Routes>
         :

@@ -1,12 +1,10 @@
-import { MantineProvider } from '@mantine/core';
-import GlobalStyles from './GlobalStyles';
 import { BrowserRouter } from 'react-router-dom';
-import {
-  QueryClient,
-  QueryClientProvider,
-} from 'react-query'
-import Router from './Router';
+import { QueryClient, QueryClientProvider } from 'react-query'
+import { MantineProvider } from '@mantine/core';
+
+import GlobalStyles from './GlobalStyles';
 import Layout from './layout/Layout';
+import Router from './Router';
 
 function App() {
   const queryClient = new QueryClient()

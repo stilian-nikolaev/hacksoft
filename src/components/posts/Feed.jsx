@@ -1,5 +1,6 @@
-import { Box, Center, UnstyledButton, Text, Loader } from '@mantine/core'
 import React, { useState } from 'react'
+import { Box } from '@mantine/core'
+
 import { usePosts } from '../../hooks/posts'
 import ErrorScreen from '../common/ErrorScreen'
 import LoadingScreen from '../common/LoadingScreen'
@@ -12,9 +13,9 @@ export default function Feed(profileData) {
     const [step, setStep] = useState(5);
 
     if (status === 'loading') return <LoadingScreen />
-
+    
     if (status === 'error') return <ErrorScreen />
-
+    
     const nextStep = () => setStep(prev => prev + 5)
 
     const posts = Object.keys(data).reverse();

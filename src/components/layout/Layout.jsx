@@ -1,5 +1,6 @@
 import React from 'react'
-import { Avatar, Box, Image, } from '@mantine/core'
+import { Box } from '@mantine/core'
+
 import Header from './Header'
 import BackGround from './BackGround'
 import Footer from './Footer'
@@ -13,7 +14,8 @@ export default function Layout({ children }) {
                 marginTop: 124,
                 display: 'flex',
                 justifyContent: 'center',
-                paddingBottom: 60
+                paddingBottom: 60,
+                minHeight: '73vh'
             }}>
                 <Box sx={{
                     width: '58%',
@@ -21,7 +23,7 @@ export default function Layout({ children }) {
                     {children}
                 </Box>
             </Box>
-            {/* <Footer /> */}
+            <Footer />
         </Box>
     )
 }

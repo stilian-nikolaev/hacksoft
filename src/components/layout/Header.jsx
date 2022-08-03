@@ -1,14 +1,14 @@
-import { Avatar, Box, Image, Menu } from '@mantine/core'
 import React from 'react'
-import { AuthStore } from '../../stores/AuthStore'
 import { useNavigate } from 'react-router-dom'
-import { routerEndpoints } from '../../service/routerEndpoints';
-import { useProfileImageURL } from '../../hooks/profile';
 import { observer } from 'mobx-react';
+import { Box, Image } from '@mantine/core'
+
 import ProfileAvatar from './ProfileAvatar';
+import { AuthStore } from '../../stores/AuthStore'
+import { routerEndpoints } from '../../service/routerEndpoints';
 
 export default observer(function Header() {
-    const { isAuthenticated} = AuthStore;
+    const { isAuthenticated } = AuthStore;
     const navigate = useNavigate()
 
     function handleLogoClick() {

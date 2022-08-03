@@ -1,5 +1,6 @@
-import { Box } from '@mantine/core'
 import React from 'react'
+import { Box } from '@mantine/core'
+
 import GenericButton from '../common/GenericButton'
 
 export default function LoadMoreButton({ nextStep }) {

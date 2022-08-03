@@ -1,12 +1,13 @@
-import { Box, Center, Modal, Text } from '@mantine/core'
-import { observer } from 'mobx-react'
 import React from 'react'
+import { useMutation, useQueryClient } from 'react-query'
+import { observer } from 'mobx-react'
+import * as yup from 'yup'
+
+import { Box, Modal, Text } from '@mantine/core'
 import { ModalStore } from '../../stores/ModalStore'
 import GenericForm from '../common/GenericForm'
 import TextField from '../common/TextField'
-import * as yup from 'yup'
 import GenericButton from '../common/GenericButton'
-import { useMutation, useQueryClient } from 'react-query'
 import { AuthStore } from '../../stores/AuthStore'
 import { endpoints } from '../../service/apiEndpoints'
 import { useEditProfile } from '../../hooks/profile'
@@ -26,7 +27,7 @@ export default observer(function EditProfileModal(initialValues) {
 
     const mutation = useMutation({
         mutationFn: data => useEditProfile(profileId, data),
-        onSuccess: (res) => {
+        onSuccess: () => {
             queryClient.invalidateQueries(endpoints.profiles.one(profileId).url)
                 .then(closeModal)
         }
@@ -46,13 +47,13 @@ export default observer(function EditProfileModal(initialValues) {
                     name="name"
                     size="lg"
                     required
-                    sx={(theme) => ({
+                    sx={{
                         marginTop: '20px',
                         '& ::placeholder': {
                             color: `gray !important`
 
                         }
-                    })}
+                    }}
                 />
                 <TextField
                     placeholder="Occupation*"
@@ -60,13 +61,13 @@ export default observer(function EditProfileModal(initialValues) {
                     name="occupation"
                     size="lg"
                     required
-                    sx={(theme) => ({
+                    sx={{
                         marginTop: '20px',
                         '& ::placeholder': {
                             color: `gray !important`
 
                         }
-                    })}
+                    }}
                 />
                 <TextField
                     placeholder="Image URL*"
@@ -74,13 +75,13 @@ export default observer(function EditProfileModal(initialValues) {
                     name="imageURL"
                     size="lg"
                     required
-                    sx={(theme) => ({
+                    sx={{
                         marginTop: '20px',
                         '& ::placeholder': {
                             color: `gray !important`
 
                         }
-                    })}
+                    }}
                 />
                 <Box sx={{ display: 'flex', justifyContent: 'center', marginTop: 20 }}>
                     <GenericButton type="submit" sx={{ width: 'auto' }}>

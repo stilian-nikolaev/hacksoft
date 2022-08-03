@@ -1,8 +1,9 @@
-import { Avatar, Box, Text } from '@mantine/core'
 import React from 'react'
+import { Avatar, Box, Text } from '@mantine/core'
+
 import PostTime from './PostTime'
 
-export default function PostHeader({ name, occupation, createdAt, imageURL, creatorId }) {
+export default function PostHeader({ name, occupation, createdAt, imageURL }) {
 
     return (
         <Box sx={{

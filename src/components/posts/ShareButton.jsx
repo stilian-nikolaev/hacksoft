@@ -1,9 +1,10 @@
-import { Box, Image, Text } from '@mantine/core'
 import React from 'react'
+import { useMutation, useQueryClient } from 'react-query'
+import { Box, Image, Text } from '@mantine/core'
+
 import { useCreatePost } from '../../hooks/posts';
 import { useEditProfile } from '../../hooks/profile';
 import { AuthStore } from '../../stores/AuthStore';
-import { useMutation, useQueryClient } from 'react-query'
 import { endpoints } from '../../service/apiEndpoints';
 
 export default function ShareButton({content, profileData}) {

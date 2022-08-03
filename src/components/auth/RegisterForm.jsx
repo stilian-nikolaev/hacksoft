@@ -1,15 +1,16 @@
 import React from 'react'
-import { Box, Text } from '@mantine/core'
+import { useNavigate } from 'react-router-dom'
 import { useMutation } from 'react-query'
-import { useLoginUser, useRegisterUser } from '../../hooks/auth'
+import * as yup from 'yup'
+import { Box, Text } from '@mantine/core'
+
+import { useRegisterUser } from '../../hooks/auth'
+import { useCreateProfile } from '../../hooks/profile'
 import TextField from '../common/TextField'
 import GenericButton from '../common/GenericButton'
 import GenericForm from '../common/GenericForm'
 import { AuthStore } from '../../stores/AuthStore'
-import { useNavigate } from 'react-router-dom'
-import * as yup from 'yup'
 import { routerEndpoints } from '../../service/routerEndpoints'
-import { useCreateProfile } from '../../hooks/profile'
 
 const validationSchema = yup
   .object({
@@ -29,7 +30,7 @@ const initialValues = {
 }
 
 export default function RegisterForm() {
-  const { login, setprofileId} = AuthStore
+  const { login, setprofileId } = AuthStore
   const navigate = useNavigate();
 
   const mutationFn = async data => {
@@ -73,13 +74,13 @@ export default function RegisterForm() {
             name="email"
             size="lg"
             required
-            sx={(theme) => ({
+            sx={{
               marginTop: '20px',
               '& ::placeholder': {
                 color: `gray !important`
 
               }
-            })}
+            }}
           />
           <TextField
             placeholder="Password*"
@@ -88,13 +89,13 @@ export default function RegisterForm() {
             type="password"
             size="lg"
             required
-            sx={(theme) => ({
+            sx={{
               marginTop: '20px',
               '& ::placeholder': {
                 color: `gray !important`
 
               }
-            })}
+            }}
           />
           <TextField
             placeholder="Name*"
@@ -102,13 +103,13 @@ export default function RegisterForm() {
             name="name"
             size="lg"
             required
-            sx={(theme) => ({
+            sx={{
               marginTop: '20px',
               '& ::placeholder': {
                 color: `gray !important`
 
               }
-            })}
+            }}
           />
           <TextField
             placeholder="Occupation*"
@@ -116,13 +117,13 @@ export default function RegisterForm() {
             name="occupation"
             size="lg"
             required
-            sx={(theme) => ({
+            sx={{
               marginTop: '20px',
               '& ::placeholder': {
                 color: `gray !important`
 
               }
-            })}
+            }}
           />
           <TextField
             placeholder="Image URL*"
@@ -130,37 +131,37 @@ export default function RegisterForm() {
             name="imageURL"
             size="lg"
             required
-            sx={(theme) => ({
+            sx={{
               marginTop: '20px',
               '& ::placeholder': {
                 color: `gray !important`
 
               }
-            })}
+            }}
           />
-          <Box sx={{ display: 'flex', alignItems:'center', marginTop: 20 }}>
+          <Box sx={{ display: 'flex', alignItems: 'center', marginTop: 20 }}>
             <GenericButton type="submit" sx={{ width: 'auto' }}>
               Sign up
             </GenericButton>
             <Text sx={{ marginLeft: 20 }}>
-            Already have an account?
-            <Text
-              onClick={handleLogInClick}
-              sx={(theme) => ({
-                backgroundImage: `linear-gradient(black, black)`,
-                width: '100px',
-                backgroundSize: '0% 2px',
-                backgroundRepeat: 'no-repeat',
-                transition: 'background-size 0.2s',
-                backgroundPosition: '50% calc(100%)',
-                '&:hover': {
-                  backgroundSize: '100% 2px',
-                  cursor: 'pointer'
-                }
-              })}>
-              Log in here
+              Already have an account?
+              <Text
+                onClick={handleLogInClick}
+                sx={{
+                  backgroundImage: `linear-gradient(black, black)`,
+                  width: '100px',
+                  backgroundSize: '0% 2px',
+                  backgroundRepeat: 'no-repeat',
+                  transition: 'background-size 0.2s',
+                  backgroundPosition: '50% calc(100%)',
+                  '&:hover': {
+                    backgroundSize: '100% 2px',
+                    cursor: 'pointer'
+                  }
+                }}>
+                Log in here
+              </Text>
             </Text>
-          </Text>
           </Box>
         </Box>
       </Box>
