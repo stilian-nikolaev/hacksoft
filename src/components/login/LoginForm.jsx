@@ -28,7 +28,6 @@ export default function LoginForm() {
   const mutation = useMutation({
     mutationFn: data => useLoginUser(data),
     onSuccess: (res) => {
-      console.log(res);
       login(res.idToken, /*res.expiresIn*/3600)
       setprofileId(res.localId);
       navigate(routerEndpoints.home)
@@ -39,10 +38,15 @@ export default function LoginForm() {
     mutation.mutate(data)
   }
 
+  function handleSignUpClick() {
+    navigate(routerEndpoints.register)
+
+  }
+
 
   return (
     <GenericForm validationSchema={validationSchema} initialValues={initialValues} onSubmit={handleSubmit}>
-      <Box sx={{display: 'flex', justifyContent: 'center', }}>
+      <Box sx={{ display: 'flex', justifyContent: 'center', }}>
         <Box sx={{ width: '50%' }}>
           <Text sx={{ fontSize: '22px', textAlign: 'center' }}>Log in to HacksoftFeed</Text>
           <TextField
@@ -74,29 +78,29 @@ export default function LoginForm() {
               }
             })}
           />
-          <Box sx={{ display: 'flex', marginTop: 40 }}>
-            <GenericButton type="submit" sx={{width: 'auto'}}>
+          <Box sx={{ display: 'flex', alignItems: 'center', marginTop: 20 }}>
+            <GenericButton type="submit" sx={{ width: 'auto' }}>
               Log in
             </GenericButton>
-            {/* <Text sx={{ marginLeft: 20 }}>
-            Don't have an account?
-            <Text
-              onClick={handleSignUpClick}
-              sx={(theme) => ({
-                backgroundImage: `linear-gradient(${theme.colors.common[0]}, ${theme.colors.common[0]})`,
-                width: '100px',
-                backgroundSize: '0% 2px',
-                backgroundRepeat: 'no-repeat',
-                transition: 'background-size 0.2s',
-                backgroundPosition: '50% calc(100%)',
-                '&:hover': {
-                  backgroundSize: '100% 2px',
-                  cursor: 'pointer'
-                }
-              })}>
-              Sign up here
+            <Text sx={{ marginLeft: 20 }}>
+              Don't have an account?
+              <Text
+                onClick={handleSignUpClick}
+                sx={(theme) => ({
+                  backgroundImage: `linear-gradient(black, black)`,
+                  width: '100px',
+                  backgroundSize: '0% 2px',
+                  backgroundRepeat: 'no-repeat',
+                  transition: 'background-size 0.2s',
+                  backgroundPosition: '50% calc(100%)',
+                  '&:hover': {
+                    backgroundSize: '100% 2px',
+                    cursor: 'pointer'
+                  }
+                })}>
+                Sign up here
+              </Text>
             </Text>
-          </Text> */}
           </Box>
         </Box>
       </Box>

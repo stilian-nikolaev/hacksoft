@@ -47,7 +47,6 @@ export default function RegisterForm() {
   const mutation = useMutation({
     mutationFn,
     onSuccess: (res) => {
-      console.log(res);
       login(res.idToken, /*res.expiresIn*/3600)
       setprofileId(res.localId);
       navigate(routerEndpoints.home);
@@ -56,6 +55,10 @@ export default function RegisterForm() {
 
   function handleSubmit(data) {
     mutation.mutate(data)
+  }
+
+  function handleLogInClick() {
+    navigate(routerEndpoints.login);
   }
 
 
@@ -135,16 +138,16 @@ export default function RegisterForm() {
               }
             })}
           />
-          <Box sx={{ display: 'flex', marginTop: 40 }}>
+          <Box sx={{ display: 'flex', alignItems:'center', marginTop: 20 }}>
             <GenericButton type="submit" sx={{ width: 'auto' }}>
-              Log in
+              Sign up
             </GenericButton>
-            {/* <Text sx={{ marginLeft: 20 }}>
-            Don't have an account?
+            <Text sx={{ marginLeft: 20 }}>
+            Already have an account?
             <Text
-              onClick={handleSignUpClick}
+              onClick={handleLogInClick}
               sx={(theme) => ({
-                backgroundImage: `linear-gradient(${theme.colors.common[0]}, ${theme.colors.common[0]})`,
+                backgroundImage: `linear-gradient(black, black)`,
                 width: '100px',
                 backgroundSize: '0% 2px',
                 backgroundRepeat: 'no-repeat',
@@ -155,9 +158,9 @@ export default function RegisterForm() {
                   cursor: 'pointer'
                 }
               })}>
-              Sign up here
+              Log in here
             </Text>
-          </Text> */}
+          </Text>
           </Box>
         </Box>
       </Box>
