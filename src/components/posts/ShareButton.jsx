@@ -1,0 +1,52 @@
+import { Box, Image, Text } from '@mantine/core'
+import React from 'react'
+import { useCreatePost } from '../../hooks/posts';
+import { useEditProfile } from '../../hooks/profile';
+import { AuthStore } from '../../stores/AuthStore';
+import { useMutation, useQueryClient } from 'react-query'
+import { endpoints } from '../../service/apiEndpoints';
+
+export default function ShareButton({content, profileData}) {
+    const { profileId } = AuthStore;
+    const queryClient = useQueryClient();
+
+    function handleShareClick() {
+        mutation.mutate({
+            content,
+            creator: {
+                name: profileData.name,
+                occupation: profileData.occupation,
+                imageURL: profileData.imageURL,
+            },
+            likeCount: 0,
+            likedBy: [],
+            postedAt: Date.now(),
+        })
+    }
+
+    const mutationFn = data => {
+        const postRes = useCreatePost(data)
+        const profileRes = useEditProfile(profileId, { posts: profileData.posts + 1 })
+
+        return Promise.all([postRes, profileRes])
+    }
+
+    const mutation = useMutation({
+        mutationFn,
+        onSuccess: (res) => {
+            queryClient.invalidateQueries(endpoints.posts.all().url)
+                .then(() => console.log(res))
+        }
+    })
+
+  return (
+      <Box onClick={handleShareClick} sx={{ display: 'flex', alignItems: 'center', '&:hover': { cursor: 'pointer' } }}>
+          <Image
+              src="/share-icon.svg"
+              alt="like button icon"
+              sx={{ width: 21 }}
+          />
+          <Text sx={{ fontSize: 15, color: '#65676B', fontWeight: 500, marginLeft: 7.5, }}>Share</Text>
+      </Box>
+  )
+}

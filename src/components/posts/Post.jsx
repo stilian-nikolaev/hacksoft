@@ -3,14 +3,11 @@ import React, { useState } from 'react'
 import BorderBox from '../common/BorderBox'
 import PostContent from './PostContent'
 import PostHeader from './PostHeader'
-import { endpoints } from '../../service/apiEndpoints'
 import PostLikes from './PostLikes'
-import { useEditPost } from '../../hooks/posts'
-import { AuthStore } from '../../stores/AuthStore'
-import { useEditProfile } from '../../hooks/profile'
 import LikeButton from './LikeButton.'
+import ShareButton from './ShareButton'
 
-export default function Post({ postedAt, content, creator, ...likesData}) {
+export default function Post({ postedAt, content, creator, profileData, ...likesData}) {
 
     return (
         <BorderBox sx={{ marginTop: 19, }}>
@@ -21,14 +18,7 @@ export default function Post({ postedAt, content, creator, ...likesData}) {
             </Box>
             <Box sx={{ display: 'flex', justifyContent: 'space-between', padding: '10px 17px' }}>
                 <LikeButton {...likesData} />
-                <Box sx={{ display: 'flex', alignItems: 'center', '&:hover': { cursor: 'pointer' } }}>
-                    <Image
-                        src="/share-icon.svg"
-                        alt="like button icon"
-                        sx={{ width: 21 }}
-                    />
-                    <Text sx={{ fontSize: 15, color: '#65676B', fontWeight: 500, marginLeft: 7.5, }}>Share</Text>
-                </Box>
+                <ShareButton content={content} profileData={profileData} />
             </Box>
         </BorderBox>
     )
