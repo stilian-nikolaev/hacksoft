@@ -7,7 +7,7 @@ import Footer from './Footer'
 
 export default function Layout({ children }) {
     return (
-        <Box sx={{}}>
+        <Box>
             <Header />
             <BackGround />
             <Box sx={{
@@ -15,7 +15,7 @@ export default function Layout({ children }) {
                 display: 'flex',
                 justifyContent: 'center',
                 paddingBottom: 60,
-                minHeight: '73vh'
+                minHeight: '73.3vh'
             }}>
                 <Box sx={{
                     width: '58%',

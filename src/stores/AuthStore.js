@@ -9,7 +9,7 @@ function retrieveStoredToken() {
     const storedExpiresAt = localStorage.getItem(EXPIRESAT_ITEM_NAME)
 
     const remainingTime = storedExpiresAt - Date.now()
-    console.log(remainingTime);
+    
     if (remainingTime <= 60000) {
         localStorage.removeItem(TOKEN_ITEM_NAME)
         localStorage.removeItem(EXPIRESAT_ITEM_NAME)
@@ -54,7 +54,7 @@ class AuthStoreImpl {
 
         localStorage.setItem(TOKEN_ITEM_NAME, token)
         localStorage.setItem(EXPIRESAT_ITEM_NAME, Date.now() + remianingTimeInMilliseconds)
-        console.log(remianingTimeInMilliseconds);
+
         this.logoutTimer = setTimeout(this.logout, remianingTimeInMilliseconds)
     }
 

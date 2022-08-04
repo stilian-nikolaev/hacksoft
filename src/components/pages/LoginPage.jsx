@@ -22,7 +22,7 @@ const initialValues = {
   password: ''
 }
 
-export default function LoginForm() {
+export default function LoginPage() {
   const { login, setprofileId } = AuthStore
   const navigate = useNavigate()
 
@@ -48,7 +48,7 @@ export default function LoginForm() {
     <GenericForm validationSchema={validationSchema} initialValues={initialValues} onSubmit={handleSubmit}>
       <Box sx={{ display: 'flex', justifyContent: 'center', }}>
         <Box sx={{ width: '50%' }}>
-          <Text sx={{ fontSize: '22px', textAlign: 'center' }}>Log in to HacksoftFeed</Text>
+          <Text sx={{ fontSize: '22px', textAlign: 'center' }}>Log in to Hacksoft Feed</Text>
           <TextField
             placeholder="Email*"
             label="Email"

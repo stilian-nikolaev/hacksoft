@@ -4,10 +4,10 @@ import { Navigate, Route, Routes } from 'react-router-dom'
 import { routerEndpoints } from '../service/routerEndpoints'
 
 import { AuthStore } from '../stores/AuthStore'
-import NotFoundPage from './common/NotFoundPage'
+import NotFoundPage from './pages/NotFoundPage'
 import HomePage from './pages/HomePage'
-import LoginForm from './auth/LoginForm'
-import RegisterForm from './auth/RegisterForm'
+import LoginPage from './pages/LoginPage'
+import RegisterPage from './pages/RegisterPage'
 
 export default observer(function Router() {
     const { isAuthenticated } = AuthStore
@@ -20,8 +20,8 @@ export default observer(function Router() {
         :
         <Routes>
             <Route path='/' element={<Navigate replace to='/login' />} />
-            <Route path={routerEndpoints.login} element={<LoginForm />} />
-            <Route path={routerEndpoints.register} element={<RegisterForm />} />
+            <Route path={routerEndpoints.login} element={<LoginPage />} />
+            <Route path={routerEndpoints.register} element={<RegisterPage />} />
         </Routes>
     )
 })

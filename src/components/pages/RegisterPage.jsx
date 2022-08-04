@@ -29,7 +29,7 @@ const initialValues = {
   imageURL: ''
 }
 
-export default function RegisterForm() {
+export default function RegisterPage() {
   const { login, setprofileId } = AuthStore
   const navigate = useNavigate();
 
@@ -67,7 +67,7 @@ export default function RegisterForm() {
     <GenericForm validationSchema={validationSchema} initialValues={initialValues} onSubmit={handleSubmit}>
       <Box sx={{ display: 'flex', justifyContent: 'center', }}>
         <Box sx={{ width: '50%' }}>
-          <Text sx={{ fontSize: '22px', textAlign: 'center' }}>Register to HacksoftFeed</Text>
+          <Text sx={{ fontSize: '22px', textAlign: 'center' }}>Register to Hacksoft Feed</Text>
           <TextField
             placeholder="Email*"
             label="Email"

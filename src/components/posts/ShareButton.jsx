@@ -35,9 +35,8 @@ export default function ShareButton({content, profileData}) {
 
     const mutation = useMutation({
         mutationFn,
-        onSuccess: (res) => {
+        onSuccess: () => {
             queryClient.invalidateQueries(endpoints.posts.all().url)
-                .then(() => console.log(res))
         }
     })
 
