@@ -3,7 +3,7 @@
 ## Project Description
 Feed similar to twitter providing the following functionality:
 - Authentication
-- Sharing posts
+- Creating posts
 - Customizing profile
 - Liking other posts
 - Sharing other users' posts
